@@ -1,0 +1,40 @@
+# node_modules/
+# .env
+# dist/
+# .DS_Store
+
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build files
+dist/
+build/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# System files
+.DS_Store
+Thumbs.db
+*.exe
+
+# Backend files
+backend/dist/
+backend/uploads/
+backend/backups/
+
+# Frontend files
+frontend/build/
+frontend/.env.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo

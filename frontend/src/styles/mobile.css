@@ -1,0 +1,25 @@
+/* Improve touch targets */
+@media (max-width: 600px) {
+  button, 
+  .MuiButton-root,
+  .MuiIconButton-root,
+  .MuiListItemButton-root {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  /* Prevent text size adjustment on orientation change */
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  /* Improve scrolling on iOS */
+  .MuiDrawer-paper {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Fix 100vh issues on mobile browsers */
+  .MuiContainer-root {
+    min-height: -webkit-fill-available;
+  }
+}

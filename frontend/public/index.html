@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- Font Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+
+    <!-- Favicon Configuration -->
+    <link rel="icon" type="image/png" sizes="96x96" href="%PUBLIC_URL%/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="%PUBLIC_URL%/android-chrome-512x512.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+
+    <!-- Mobile Viewport Optimization -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover" />
+    
+    <!-- Theme Color for Mobile Browser UI -->
+    <meta name="theme-color" content="#00C2A8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B1F3A" media="(prefers-color-scheme: dark)" />
+    
+    <!-- iOS Specific -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="SENDORA" />
+    
+    <!-- Android Specific -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#00C2A8" />
+    <meta name="msapplication-TileColor" content="#0B1F3A" />
+    <meta name="msapplication-TileImage" content="%PUBLIC_URL%/mstile-150x150.png" />
+    
+    <!-- SEO & Description -->
+    <meta
+      name="description"
+      content="SENDORA SMS Platform - Send SMS campaigns, manage contacts, and track delivery in real-time. Trusted by businesses across Africa."
+    />
+    <meta name="keywords" content="SMS, bulk SMS, messaging, campaigns, contacts, Tanzania, Africa, SENDORA" />
+    <meta name="author" content="SENDORA" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="SENDORA - Bulk SMS Platform" />
+    <meta property="og:description" content="Send SMS campaigns, manage contacts, and track delivery in real-time." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sendora.app" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SENDORA - Bulk SMS Platform" />
+    <meta name="twitter:description" content="Send SMS campaigns, manage contacts, and track delivery in real-time." />
+    <meta name="twitter:image" content="%PUBLIC_URL%/twitter-card.png" />
+    
+    <!-- Performance Optimizations -->
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://api.sendora.app" />
+    
+    <!-- Preconnect to critical origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.sendora.app" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="%PUBLIC_URL%/logo.png" as="image" />
+    
+    <!-- Content Security Policy (optional - uncomment for production) -->
+    <!--
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.sendora.app ws://localhost:3000 wss://api.sendora.app;" />
+    -->
+    
+    <title>SENDORA - Bulk SMS Platform</title>
+    
+    <!-- iOS Splash Screens (optional) -->
+    <link href="%PUBLIC_URL%/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="%PUBLIC_URL%/splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="%PUBLIC_URL%/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="%PUBLIC_URL%/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    
+    <!-- Styles for mobile optimization -->
+    <style>
+      /* Prevent text size adjustment on orientation change */
+      html {
+        -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        height: -webkit-fill-available;
+      }
+      
+      /* Better box sizing */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Remove default margin and padding */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        background-color: #f5f5f5;
+      }
+      
+      /* Improve tap targets on mobile */
+      @media (max-width: 600px) {
+        button, 
+        a, 
+        .MuiButton-root,
+        .MuiIconButton-root,
+        .MuiListItemButton-root,
+        .MuiChip-root {
+          touch-action: manipulation;
+        }
+        
+        /* Prevent pull-to-refresh on some browsers */
+        body {
+          overscroll-behavior-y: contain;
+        }
+      }
+      
+      /* Fix for iOS input zoom */
+      @supports (-webkit-touch-callout: none) {
+        input, select, textarea {
+          font-size: 16px !important;
+        }
+      }
+      
+      /* Loading animation while app loads */
+      .app-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        background: linear-gradient(135deg, #00C2A8 0%, #0B1F3A 100%);
+        color: white;
+        font-family: 'Inter', sans-serif;
+        flex-direction: column;
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+        margin-bottom: 20px;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+      }
+      
+      /* PWA install banner styles (optional) */
+      .pwa-install-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 16px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 9999;
+        transform: translateY(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .pwa-install-banner.show {
+        transform: translateY(0);
+      }
+      
+      @media (min-width: 768px) {
+        .pwa-install-banner {
+          max-width: 400px;
+          left: auto;
+          right: 20px;
+          bottom: 20px;
+          border-radius: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: sans-serif;">
+        <h2>JavaScript Required</h2>
+        <p>You need to enable JavaScript to run this app.</p>
+      </div>
+    </noscript>
+    
+    <!-- Loading indicator while React loads -->
+    <div id="root">
+      <div class="app-loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading SENDORA...</div>
+      </div>
+    </div>
+    
+    <!-- PWA install prompt script (optional) -->
+    <script>
+      // Detect if app is already installed
+      if (window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('SENDORA running in standalone mode');
+        document.body.classList.add('pwa-mode');
+      }
+      
+      // Listen for beforeinstallprompt event for PWA install
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later
+        deferredPrompt = e;
+        console.log('PWA install prompt available');
+      });
+      
+      // Optional: Show custom install banner after a delay
+      setTimeout(() => {
+        if (deferredPrompt && !window.matchMedia('(display-mode: standalone)').matches) {
+          const banner = document.createElement('div');
+          banner.className = 'pwa-install-banner show';
+          banner.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <img src="%PUBLIC_URL%/android-chrome-192x192.png" alt="SENDORA" style="width: 40px; height: 40px;">
+              <div>
+                <div style="font-weight: bold; color: #0B1F3A;">Install SENDORA</div>
+                <div style="font-size: 12px; color: #6B7280;">Get faster access</div>
+              </div>
+            </div>
+            <div>
+              <button onclick="installPWA()" style="background: #00C2A8; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; cursor: pointer;">Install</button>
+              <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: #6B7280; cursor: pointer;">✕</button>
+            </div>
+          `;
+          document.body.appendChild(banner);
+        }
+      }, 3000);
+      
+      function installPWA() {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the install prompt');
+            } else {
+              console.log('User dismissed the install prompt');
+            }
+            deferredPrompt = null;
+            document.querySelector('.pwa-install-banner')?.remove();
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
