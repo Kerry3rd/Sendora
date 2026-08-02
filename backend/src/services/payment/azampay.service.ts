@@ -4,7 +4,7 @@ import { wsService } from '../websocket.service'; // Import WebSocket service
 import Transaction from '../../models/Transaction';
 import User from '../../models/User';
 
-interface AzamPayCredentials {
+export interface AzamPayCredentials {
   appName: string;
   clientId: string;
   clientSecret: string;
@@ -12,14 +12,14 @@ interface AzamPayCredentials {
   environment: 'sandbox' | 'production';
 }
 
-interface MobileCheckoutParams {
+export interface MobileCheckoutParams {
   accountNumber: string;  // Customer's phone number
   amount: number;
   externalId: string;     // Your unique transaction ID
   provider: string;       // 'Airtel', 'Tigo', 'Halopesa', 'Mpesa', 'Azampesa'
 }
 
-interface BankCheckoutParams {
+export interface BankCheckoutParams {
   amount: number;
   currency: string;
   merchantAccountNumber: string;
@@ -30,7 +30,7 @@ interface BankCheckoutParams {
   referenceId: string;
 }
 
-interface PaymentResult {
+export interface PaymentResult {
   success: boolean;
   transactionId?: string;
   message?: string;
@@ -38,7 +38,7 @@ interface PaymentResult {
   errors?: any;
 }
 
-class AzamPayService {
+export class AzamPayService {
   private credentials: AzamPayCredentials;
   private accessToken: string | null = null;
   private tokenExpiry: Date | null = null;

@@ -95,11 +95,11 @@ export class RecurringCampaignService {
       where: {
         isRecurring: true,
         status: 'running',
-        nextRecurrenceRun: { [Op.lte]: now },
-        [Op.or]: [
-          { recurrenceEndDate: null },
-          { recurrenceEndDate: { [Op.gte]: now } }
-        ],
+        nextRunAt: { [Op.lte]: now },
+        // [Op.or]: [
+        //   { recurrenceEndDate: null },
+        //   { recurrenceEndDate: { [Op.gte]: now } }
+        // ],
       },
     });
     

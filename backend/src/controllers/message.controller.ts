@@ -128,10 +128,10 @@ export class MessageController {
         nextScheduledAt: nextDate,
         status: MessageStatus.PENDING,
         userId,
-        createdBy: userId,
         sentCount: 0,
         failedCount: 0,
-      });
+        // createdAt: new Date(),
+      } as any);
 
       res.status(201).json({
         success: true,
@@ -365,7 +365,7 @@ export class MessageController {
       }
 
       const scheduler = MessageSchedulerService.getInstance();
-      await scheduler.triggerNow(id);
+      await scheduler.triggerNow(userId);
 
       res.json({
         success: true,

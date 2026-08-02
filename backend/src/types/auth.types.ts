@@ -1,4 +1,4 @@
-import { User } from '../models/User';
+import  User  from '../models/User';
 
 // Define what we actually store in the JWT token
 export interface JwtPayload {

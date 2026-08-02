@@ -124,7 +124,9 @@ export class RecurringCampaignScheduler {
           const group = await Group.findByPk(campaign.groupId, {
             include: [{ model: Contact, as: 'contacts' }]
           });
-          return group?.contacts?.map((c: Contact) => c.phoneNumber) || [];
+          // return group?.contacts?.map((c: Contact) => c.phoneNumber) || [];
+          // return group?.get('contacts')?.map((c: Contact) => c.phoneNumber) || [];
+          return ( group as any )?.get('contacts')?.map((c: Contact) => c.phoneNumber) || [];
         }
         break;
         

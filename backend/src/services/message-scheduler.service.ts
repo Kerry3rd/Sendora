@@ -1,18 +1,21 @@
 import { Op } from 'sequelize';
-import cron from 'node-cron';
+// import cron from 'node-cron';
+import { ScheduledTask } from 'node-cron';
+import * as cron from 'node-cron'; // for the schedule function
 import ScheduledMessage, { MessageStatus, RepeatType, MessageType } from '../models/ScheduledMessage';
 import MessageLog, { MessageLogStatus } from '../models/MessageLog';
 import Contact from '../models/Contact';
 import Group from '../models/Group';
-import GroupContact from '../models/GroupContact';
-import { EmailService } from './email.service';
-import { smsService } from './SMSService';
+// import GroupContact from '../models/GroupContact';
+import GroupContact from '../models/GroupMembership';
+import { EmailService } from '../services/email/email.service';
+import { smsService } from '../services/sms/SMSService';
 import { logger } from '../utils/logger';
 
 export class MessageSchedulerService {
   private static instance: MessageSchedulerService;
   private isRunning = false;
-  private cronJob: cron.ScheduledTask;
+  private cronJob: ScheduledTask;
 
   private constructor() {
     // Run every minute to check for messages to send
@@ -57,12 +60,12 @@ export class MessageSchedulerService {
           nextScheduledAt: {
             [Op.lte]: now,
           },
-          [Op.or]: [
+          [Op.or]: [ 
             { endDate: null },
             { endDate: { [Op.gte]: now } },
           ],
         },
-      });
+      } as any);
 
       logger.info(`Found ${messages.length} messages to process`);
 
@@ -197,7 +200,7 @@ export class MessageSchedulerService {
               lastName: contact.lastName,
               fullName: `${contact.firstName || ''} ${contact.lastName || ''}`.trim(),
               email: contact.email,
-              phone: contact.phone,
+              phone: contact.phoneNumber,
               message: this.processTemplate(message.content, contact),
               subject: message.subject,
               unsubscribeUrl: `${process.env.APP_URL}/unsubscribe?email=${encodeURIComponent(contact.email)}`,
@@ -214,7 +217,7 @@ export class MessageSchedulerService {
           error: result.error?.message,
           sentAt: new Date(),
           metadata: { messageId: result.messageId },
-        });
+        } as any);
 
         if (result.success) {
           sent++;
@@ -227,11 +230,11 @@ export class MessageSchedulerService {
         await MessageLog.create({
           scheduledMessageId: message.id,
           contactId: contact.id,
-          contactEmail: contact.email,
+          contactEmail: contact.email || undefined,
           status: MessageLogStatus.FAILED,
           error: error.message,
           sentAt: new Date(),
-        });
+        } as any);
       }
     }
 
@@ -244,14 +247,14 @@ export class MessageSchedulerService {
 
     for (const contact of contacts) {
       try {
-        if (!contact.phone) {
+        if (!contact.phoneNumber) {
           throw new Error('Contact has no phone number');
         }
 
         // Use your existing SMS service
         const result = await smsService.sendSingleSMS({
           userId: message.userId,
-          phoneNumber: contact.phone,
+          phoneNumber: contact.phoneNumber,
           message: this.processTemplate(message.content, contact),
           senderId: process.env.SMS_SENDER_ID || 'SENDORA',
           isUnicode: false,
@@ -261,12 +264,12 @@ export class MessageSchedulerService {
         await MessageLog.create({
           scheduledMessageId: message.id,
           contactId: contact.id,
-          contactPhone: contact.phone,
+          contactPhone: contact.phoneNumber,
           status: result.success ? MessageLogStatus.SENT : MessageLogStatus.FAILED,
           error: result.error,
           sentAt: new Date(),
           metadata: { messageId: result.messageId, gateway: result.gateway },
-        });
+        } as any);
 
         if (result.success) {
           sent++;
@@ -279,11 +282,11 @@ export class MessageSchedulerService {
         await MessageLog.create({
           scheduledMessageId: message.id,
           contactId: contact.id,
-          contactPhone: contact.phone,
+          contactPhone: contact.phoneNumber,
           status: MessageLogStatus.FAILED,
           error: error.message,
           sentAt: new Date(),
-        });
+        } as any);
       }
     }
 
@@ -297,7 +300,7 @@ export class MessageSchedulerService {
       .replace(/{{lastName}}/g, contact.lastName || '')
       .replace(/{{fullName}}/g, `${contact.firstName || ''} ${contact.lastName || ''}`.trim())
       .replace(/{{email}}/g, contact.email || '')
-      .replace(/{{phone}}/g, contact.phone || '');
+      .replace(/{{phone}}/g, contact.phoneNumber || '');
   }
 
   private calculateNextSchedule(message: ScheduledMessage): Date {

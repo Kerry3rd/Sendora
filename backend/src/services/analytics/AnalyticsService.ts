@@ -3,6 +3,7 @@ import Message from '../../models/Message';
 import Campaign from '../../models/Campaign';
 import User from '../../models/User';
 import RedisClient from '../../config/redis';
+import { Op } from 'sequelize';
 
 export interface AnalyticsData {
   overview: {
@@ -107,7 +108,7 @@ export class AnalyticsService {
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
 
-    const timelineData = await Message.findAll({
+    const timelineData: any[] = await Message.findAll({
       attributes: [
         [sequelize.fn('DATE', sequelize.col('createdAt')), 'date'],
         [sequelize.fn('COUNT', sequelize.col('id')), 'total'],
@@ -118,7 +119,7 @@ export class AnalyticsService {
       where: {
         ...(userId && { userId }),
         createdAt: {
-          [sequelize.Op.between]: [startDate, endDate],
+          [Op.between]: [startDate, endDate],
         },
       },
       group: [sequelize.fn('DATE', sequelize.col('createdAt'))],
@@ -244,7 +245,7 @@ export class AnalyticsService {
       where: {
         ...(userId && { userId }),
         gateway: {
-          [sequelize.Op.not]: null,
+          [Op.not]: null,
         },
       },
       group: ['gateway'],
