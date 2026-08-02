@@ -46,7 +46,9 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "moduleResolution": "node",           // keep as "node"
+    "moduleResolution": "node",     
+    
+    "ignoreDeprecations": "6.0",// keep as "node"
     "allowSyntheticDefaultImports": true,
     // 🔽 REMOVE "baseUrl" (or keep it – but the error says to remove it)
     // "baseUrl": ".",
