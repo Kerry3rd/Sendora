@@ -6,7 +6,7 @@ import User from '../models/User';
 import Campaign from '../models/Campaign';
 import { Op } from 'sequelize';
 import Transaction from '../models/Transaction';
-import NotificationService from '@/services/notification/notification.service';
+import NotificationService from '../services/notification/notification.service';
 
 interface SMSJobData {
   id?: string;
