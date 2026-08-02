@@ -58,11 +58,50 @@
 // }
 
 
+// {
+//   "compilerOptions": {
+//     "target": "ES2020",
+//     "module": "node16",
+//     "moduleResolution": "node16",
+//     "lib": ["ES2020"],
+//     "outDir": "./dist",
+//     "rootDir": "./src",
+//     "strict": true,
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "resolveJsonModule": true,
+//     "declaration": true,
+//     "declarationMap": true,
+//     "sourceMap": true,
+//     "experimentalDecorators": true,
+//     "emitDecoratorMetadata": true,
+//     "allowSyntheticDefaultImports": true,
+
+//     // Alias support for @/
+//     // "baseUrl": ".",
+//     // "paths": {
+//     //   "@/*": ["./src/*"]
+//     // },
+
+//     // IMPORTANT: Do NOT include "bcryptjs" in this list.
+//     // We include only "node" to avoid the implicit library error.
+//     // Our manual declaration will handle bcryptjs.
+//     "types": ["node"],
+
+//     // Explicitly tell TypeScript where to find type definitions
+//     "typeRoots": ["./node_modules/@types", "./src/types"]
+//   },
+//   "include": ["src/**/*"],
+//   "exclude": ["node_modules", "dist", "tests"]
+// }
+
+
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "node16",
-    "moduleResolution": "node16",
+    "module": "CommonJS",
+    "moduleResolution": "bundler",
     "lib": ["ES2020"],
     "outDir": "./dist",
     "rootDir": "./src",
@@ -77,20 +116,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
-
-    // Alias support for @/
-    // "baseUrl": ".",
-    // "paths": {
-    //   "@/*": ["./src/*"]
-    // },
-
-    // IMPORTANT: Do NOT include "bcryptjs" in this list.
-    // We include only "node" to avoid the implicit library error.
-    // Our manual declaration will handle bcryptjs.
-    "types": ["node"],
-
-    // Explicitly tell TypeScript where to find type definitions
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "tests"]
