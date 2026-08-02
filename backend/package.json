@@ -1,6 +1,9 @@
 {
   "name": "sendora-backend",
   "version": "1.0.0",
+  "engines": {
+    "node": "20.x"
+  },
   "description": "SENDORA - Bulk SMS Platform Backend",
   "main": "dist/server.js",
   "scripts": {
