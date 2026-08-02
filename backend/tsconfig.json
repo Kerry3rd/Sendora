@@ -1,7 +1,35 @@
 // {
 //   "compilerOptions": {
 //     "target": "ES2020",
-//     "module": "commonjs",
+//     "module": "node16",
+//     "moduleResolution": "node16",
+//     "lib": ["ES2020"],
+//     "outDir": "./dist",
+//     "rootDir": "./src",
+//     "strict": true,
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "resolveJsonModule": true,
+//     "declaration": true,
+//     "declarationMap": true,
+//     "sourceMap": true,
+//     "experimentalDecorators": true,
+//     "emitDecoratorMetadata": true,
+//     "types": [],
+//     "allowSyntheticDefaultImports": true
+//     // 👇 DO NOT add "types" or "typeRoots" here – let TypeScript use defaults
+//   },
+//   "include": ["src/**/*"],
+//   "exclude": ["node_modules", "dist", "tests"]
+// }
+
+
+// {
+//   "compilerOptions": {
+//     "target": "ES2020",
+//     "module": "node16",
+//     "moduleResolution": "node16",
 //     "lib": ["ES2020"],
 //     "outDir": "./dist",
 //     "rootDir": "./src",
@@ -16,13 +44,14 @@
 //     "experimentalDecorators": true,
 //     "emitDecoratorMetadata": true,
 //     "allowSyntheticDefaultImports": true,
+
+//     // 👇 Add this to resolve @/ aliases
+//     "baseUrl": ".",
 //     "paths": {
-//       "@/*": ["src/*"]
-//     },
-//     "typeRoots": [
-//       "./node_modules/@types",
-//       "./src/types"
-//     ]
+//       "@/*": ["./src/*"]
+//     }
+
+//     // 👇 Remove "types": [] – let TypeScript include all @types automatically
 //   },
 //   "include": ["src/**/*"],
 //   "exclude": ["node_modules", "dist", "tests"]
@@ -33,6 +62,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "node16",
+    "moduleResolution": "node16",
     "lib": ["ES2020"],
     "outDir": "./dist",
     "rootDir": "./src",
@@ -46,20 +76,21 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "moduleResolution": "node16",     
-    
-    // "ignoreDeprecations": "6.0",// keep as "node"
     "allowSyntheticDefaultImports": true,
-    // 🔽 REMOVE "baseUrl" (or keep it – but the error says to remove it)
-    // "baseUrl": ".",
+
+    // Alias support for @/
+    "baseUrl": ".",
     "paths": {
-      // ✅ Add leading "./" to make paths relative
       "@/*": ["./src/*"]
     },
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/types"
-    ]
+
+    // IMPORTANT: Do NOT include "bcryptjs" in this list.
+    // We include only "node" to avoid the implicit library error.
+    // Our manual declaration will handle bcryptjs.
+    "types": ["node"],
+
+    // Explicitly tell TypeScript where to find type definitions
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "tests"]
